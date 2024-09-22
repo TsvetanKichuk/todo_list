@@ -10,13 +10,6 @@ from todo_app.models import Task, Tag
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    # overdue_tasks = Task.objects.filter(deadline__lt=datetime.now())()
-    # upcoming_tasks = Task.objects.filter(deadline__gt=datetime.now())()
-    #
-    # context = {
-    #     'overdue_tasks': overdue_tasks,
-    #     'upcoming_tasks': upcoming_tasks,
-    # }
     return render(request, "todo_app/task_list.html")
 
 
@@ -42,13 +35,13 @@ class TaskCreateView(generic.edit.CreateView):
 class TaskUpdateView(generic.edit.UpdateView):
     model = Task
     form_class = TaskUpdateForm
-    success_url = reverse_lazy("tasks:index")
+    success_url = reverse_lazy("todo_app:index")
     template_name = "todo_app/task_form.html"
 
 
 class TaskDeleteView(generic.edit.DeleteView):
     model = Task
-    success_url = reverse_lazy("tasks:index")
+    success_url = reverse_lazy("todo_app:index")
     template_name = "todo_app/task_confirm_delete.html"
 
 
@@ -75,10 +68,3 @@ class TagUpdateView(generic.edit.UpdateView):
 class TagDeleteView(generic.edit.DeleteView):
     model = Tag
     success_url = reverse_lazy("todo_app:index")
-
-
-def complete_task(request, pk):
-    complete = Task.objects.filter(boolean=True)
-    if complete:
-        return f"Complete"
-    return f"Undo"
