@@ -6,10 +6,10 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
 
     def get_absolute_url(self):
-        return reverse("tasks:tags-list")
+        return reverse("todo_app:tags-list")
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 
 class Task(models.Model):
@@ -25,8 +25,7 @@ class Task(models.Model):
         ordering = ["datetime", "boolean"]
 
     def get_absolute_url(self):
-        return reverse("tasks:tasks-list")
+        return reverse("todo_app:tasks-list")
 
     def __str__(self):
-        return f"{self.content} ({self.boolean} {self.datetime} {self.tags.name})"
-
+        return {self.content}, {self.boolean}, {self.datetime}, {self.tags}

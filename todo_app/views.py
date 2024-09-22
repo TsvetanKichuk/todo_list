@@ -18,7 +18,7 @@ class TaskListView(generic.ListView):
     paginate_by = 5
     context_object_name = "tasks_list"
     # template_name = "todo_app/task_list.html"
-    queryset = Task.objects.all().prefetch_related("tags__tasks")
+    queryset = Task.objects.all().prefetch_related("tags__tasks__tags")
 
 
 # class TaskDetailView(generic.DetailView):

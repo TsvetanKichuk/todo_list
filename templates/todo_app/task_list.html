@@ -20,7 +20,7 @@
             {{ task.id }}
           </td>
           <td>
-            {{ task.content }}<br>{{ task.datetime }}<br>Tags: {{ tasks.tags.name }}
+            {{ task.content }}  {{ task.deadline }}<br>{{ task.datetime }}<br>Tags: ({{ task.tags.name }})
             <a href="{% url 'todo_app:task-update' pk=task.id %}">
               Update
             </a>
@@ -29,8 +29,8 @@
               Delete
             </a>
           </td>
-          <td><a class="btn btn-success" href="{{ task.get_absolute_url }}">{% if task.boolean == True %}Completed{% endif %}{% if task.boolean == False %}Undo{% endif %}</a></td>
-        
+          <td><a class="btn btn-success" href="{{ task.get_absolute_url }}">{% if task.boolean == True %}
+            Completed{% endif %}{% if task.boolean == False %}Undo{% endif %}</a></td>
         </tr>
       {% endfor %}
     </table>
