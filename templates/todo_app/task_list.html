@@ -14,23 +14,24 @@
         <th></th>
       </tr>
 
-      {% for task in tasks_list %}
+      {% for task in tasks_list.all %}
         <tr>
           <td>
             {{ task.id }}
           </td>
           <td>
-            {{ task.content }}  {{ task.deadline }}<br>{{ task.datetime }}<br>Tags: ({{ task.tags.name }})
+            <h5>{{ task.content }}<a>{% if task.сompleted_task == True %}
+            <a style="color: red"> Not done{% endif %}{% if task.сompleted_task == False %}<a style="color: green"> Done{% endif %}</a></h5> <br><p> Created: {{ task.datetime }} <a style="color: firebrick"> Deadline: {{ task.deadline }}</a></p><p style="color: gray">Tags: ({{ task.tags.name }})
             <a href="{% url 'todo_app:task-update' pk=task.id %}">
               Update
             </a>
             <a style="color: red"
                href="{% url 'todo_app:task-delete' pk=task.id %}">
               Delete
-            </a>
+            </a><p>
           </td>
-          <td><a class="btn btn-success" href="{{ task.get_absolute_url }}">{% if task.boolean == True %}
-            Completed{% endif %}{% if task.boolean == False %}Undo{% endif %}</a></td>
+          <td><a class="btn btn-success" href="{{ task.get_absolute_url }}">{% if task.сompleted_task == True %}
+            Completed{% endif %}{% if task.сompleted_task == False %}Undo{% endif %}</a></td>
         </tr>
       {% endfor %}
     </table>

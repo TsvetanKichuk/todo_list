@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -17,8 +15,7 @@ class TaskListView(generic.ListView):
     model = Task
     paginate_by = 5
     context_object_name = "tasks_list"
-    # template_name = "todo_app/task_list.html"
-    queryset = Task.objects.all().prefetch_related("tags__tasks__tags")
+    queryset = Task.objects.all().select_related("tags")
 
 
 # class TaskDetailView(generic.DetailView):

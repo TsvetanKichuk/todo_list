@@ -9,23 +9,23 @@ class Tag(models.Model):
         return reverse("todo_app:tags-list")
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Task(models.Model):
     content = models.TextField(max_length=5000)
     datetime = models.DateTimeField(auto_now_add=True)
-    boolean = models.BooleanField(default=False, blank=True)
-    deadline = models.DateTimeField(null=True, blank=True)
-    tags = models.ManyToManyField(Tag, related_name='tasks')
+    сompleted_task = models.BooleanField(default=False, blank=True)
+    deadline = models.DateTimeField(null=True, blank=True,)
+    tags = models.ForeignKey(Tag, on_delete=models.CASCADE, default=None)
 
     class Meta:
         verbose_name = "task"
         verbose_name_plural = "tasks"
-        ordering = ["datetime", "boolean"]
+        ordering = ["datetime", "сompleted_task"]
 
     def get_absolute_url(self):
         return reverse("todo_app:tasks-list")
 
     def __str__(self):
-        return {self.content}, {self.boolean}, {self.datetime}, {self.tags}
+        return f"{self.content}, {self.сompleted_task}, {self.datetime}, {self.tags}"

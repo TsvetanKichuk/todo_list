@@ -5,7 +5,9 @@
   <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ form|crispy }}
-
+    <label for="deadline">Deadline:</label>
+    <input type="datetime-local" class="form-control" id="deadline" name="deadline">
+    <br>
     <input type="submit" value="Submit" class="btn btn-primary">
   </form>
 {% endblock %}
