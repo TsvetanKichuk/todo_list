@@ -16,7 +16,10 @@ class Task(models.Model):
     content = models.TextField(max_length=5000)
     datetime = models.DateTimeField(auto_now_add=True)
     сompleted_task = models.BooleanField(default=False, blank=True)
-    deadline = models.DateTimeField(null=True, blank=True,)
+    deadline = models.DateTimeField(
+        null=True,
+        blank=True,
+    )
     tags = models.ForeignKey(Tag, on_delete=models.CASCADE, default=None)
 
     class Meta:

@@ -1,23 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Todo list page</h2>
-    <h3>
-    Task list
-    <a href="{% url 'todo_app:task-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-   <h1>
+  <h2>Todo list page</h2>
+  <h3>
+  Task list
+  <a href="{% url 'todo_app:task-create' %}" class="btn btn-primary link-to-page">
+    Create
+  </a>
+  <h1>
     {{ task.content }}
-{#    <a href="{% url 'todo_app:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">#}
-{#      Delete#}
-{#    </a>#}
-{##}
-{#    <a href="{% url 'todo_app:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">#}
-{#      Update#}
-{#    </a>#}
   </h1>
-   {% if tasks_list %}
+  {% if tasks_list %}
     <ul>
       {% for task in tasks_list %}
         <li>
