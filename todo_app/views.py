@@ -18,11 +18,6 @@ class TaskListView(generic.ListView):
     queryset = Task.objects.all().select_related("tags")
 
 
-# class TaskDetailView(generic.DetailView):
-#     model = Task
-#     queryset = Task.objects.all().prefetch_related("task__tags")
-
-
 class TaskCreateView(generic.edit.CreateView):
     model = Task
     form_class = TaskCreationForm
