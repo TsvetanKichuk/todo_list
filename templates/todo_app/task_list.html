@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+  Task list
+  <a href="{% url 'todo_app:task-create' %}" class="btn btn-primary link-to-page">
+    Create
+  </a>
+  {% if tasks_list %}
+    <table class="table">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      {% for task in tasks_list.all %}
+        <tr>
+          <td>
+            {{ task.id }}
+          </td>
+          <td>
+            <h5>{{ task.content }}<a>{% if task.сompleted_task == True %}
+            <a style="color: red"> Not done{% endif %}{% if task.сompleted_task == False %}<a style="color: green"> Done{% endif %}</a></h5> <br><p> Created: {{ task.datetime }} <a style="color: firebrick"> Deadline: {{ task.deadline }}</a></p><p style="color: gray">Tags: ({{ task.tags.name }})
+            <a href="{% url 'todo_app:task-update' pk=task.id %}">
+              Update
+            </a>
+            <a style="color: red"
+               href="{% url 'todo_app:task-delete' pk=task.id %}">
+              Delete
+            </a><p>
+          </td>
+          <td><a class="btn btn-success" href="{{ task.get_absolute_url }}">{% if task.сompleted_task == True %}
+            Completed{% endif %}{% if task.сompleted_task == False %}Undo{% endif %}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no tasks in list</p>
+  {% endif %}
+{% endblock %}

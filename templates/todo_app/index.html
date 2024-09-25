@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Todo list page</h2>
+  <h3>
+  Task list
+  <a href="{% url 'todo_app:task-create' %}" class="btn btn-primary link-to-page">
+    Create
+  </a>
+  <h1>
+    {{ task.content }}
+  </h1>
+  {% if tasks_list %}
+    <ul>
+      {% for task in tasks_list %}
+        <li>
+          <a href="{% url "todo_app:tasks-list" %} ">{{ task.id }}</a>
+          {{ task.content }} ({{ task.tag.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no tasks in list</p>
+  {% endif %}
+{% endblock %}
